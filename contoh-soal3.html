@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1f2937">
+    <title>Contoh Soal Penerapan Invers Matriks - E-Learning SMA</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { min-height: 100vh; font-family: Arial, sans-serif; background: #f3f4f6; color: #1f2937; }
+        .app { width: min(100%, 626px); min-height: 100vh; margin: auto; background: #fff; }
+        header { background: #1f2937; color: #fff; padding: 24px 25px; }
+        header a { color: #fff; text-decoration: none; font-size: 16px; }
+        header a:hover { text-decoration: underline; }
+        header a:focus-visible, .button:focus-visible, summary:focus-visible { outline: 3px solid #94a3b8; outline-offset: 3px; }
+        header h1 { margin-top: 22px; font-size: clamp(24px, 5vw, 28px); line-height: 1.3; }
+        header p { margin-top: 7px; color: #d1d5db; font-size: 17px; line-height: 1.5; }
+        main { padding: 25px; }
+        .intro { margin-bottom: 20px; color: #475569; line-height: 1.7; }
+        .soal { border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 18px; }
+        .soal h2 { font-size: 19px; line-height: 1.4; margin-bottom: 12px; }
+        .soal p { line-height: 1.7; margin-bottom: 12px; overflow-wrap: anywhere; }
+        details.jawaban { margin-top: 14px; background: #f0fdf4; border-left: 4px solid #22c55e; border-radius: 8px; padding: 14px 16px; }
+        details.jawaban summary { cursor: pointer; color: #166534; font-weight: bold; line-height: 1.5; }
+        .pembahasan { padding-top: 12px; line-height: 1.8; color: #374151; }
+        .pembahasan p { margin-bottom: 8px; }
+        .pembahasan p:last-child { margin-bottom: 0; }
+        .button { display: block; text-align: center; background: #1f2937; color: #fff; text-decoration: none; padding: 14px; border-radius: 9px; font-weight: bold; margin-top: 20px; }
+        .button:hover { background: #111827; }
+        @media (max-width: 600px) {
+            header { padding: 22px 20px; }
+            main { padding: 20px; }
+            .soal { padding: 17px; }
+        }
+            /* Ukuran frame seragam untuk semua halaman e-learning */
+        .app, .container {
+            width: min(100%, 626px);
+            max-width: 626px;
+            min-height: 100vh;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .bottom-menu { max-width: 626px; }
+        @media (max-width: 626px) {
+            .app, .container { width: 100%; max-width: 100%; }
+            .bottom-menu { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <header>
+            <a href="pertemuan3.html">← Kembali</a>
+            <h1>🧮 Contoh Penerapan Invers Matriks</h1>
+            <p>Pertemuan 3 — Penerapan Determinan dan Invers Matriks</p>
+        </header>
+
+        <main>
+            <p class="intro">Gunakan determinan dan invers matriks untuk menyelesaikan sistem persamaan linear. Buka pembahasan untuk melihat langkah-langkahnya.</p>
+
+            <section class="soal" aria-labelledby="soal1">
+                <h2 id="soal1">Contoh: Menyelesaikan sistem persamaan</h2>
+                <p>Tentukan nilai x dan y dari sistem berikut menggunakan invers matriks:</p>
+                <p><strong>2x + y = 5<br>x − y = 1</strong></p>
+                <details class="jawaban">
+                    <summary>Lihat pembahasan</summary>
+                    <div class="pembahasan">
+                        <p><strong>1. Tulis dalam bentuk AX = B.</strong></p>
+                        <p>A = [[2, 1], [1, −1]], X = [[x], [y]], dan B = [[5], [1]].</p>
+                        <p><strong>2. Hitung determinan A.</strong></p>
+                        <p>det(A) = (2 × −1) − (1 × 1) = −3. Karena det(A) ≠ 0, invers A ada.</p>
+                        <p><strong>3. Cari invers A.</strong></p>
+                        <p>A⁻¹ = −1/3 [[−1, −1], [−1, 2]].</p>
+                        <p><strong>4. Hitung X = A⁻¹B.</strong></p>
+                        <p>X = [[2], [1]], sehingga <strong>x = 2 dan y = 1</strong>.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section class="soal" aria-labelledby="soal2">
+                <h2 id="soal2">Pemeriksaan jawaban</h2>
+                <p>Pastikan nilai x = 2 dan y = 1 memenuhi kedua persamaan.</p>
+                <details class="jawaban">
+                    <summary>Lihat pembahasan</summary>
+                    <div class="pembahasan">
+                        <p>Persamaan pertama: 2(2) + 1 = 5 ✓</p>
+                        <p>Persamaan kedua: 2 − 1 = 1 ✓</p>
+                        <p>Kedua persamaan terpenuhi. Jadi, solusinya benar.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section class="soal" aria-labelledby="soal3">
+                <h2 id="soal3">Mengapa determinan harus bukan nol?</h2>
+                <p>Apa yang terjadi jika determinan matriks koefisien sama dengan nol?</p>
+                <details class="jawaban">
+                    <summary>Lihat pembahasan</summary>
+                    <div class="pembahasan">
+                        <p>Jika det(A) = 0, matriks A tidak memiliki invers.</p>
+                        <p>Karena rumus solusi X = A⁻¹B memerlukan invers A, metode invers tidak dapat digunakan untuk matriks tersebut.</p>
+                    </div>
+                </details>
+            </section>
+
+            <a href="kuis3.html" class="button">LANJUT KE KUIS →</a>
+        </main>
+    </div>
+</body>
+</html>

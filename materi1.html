@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1f2937">
+    <title>Materi Determinan Matriks - Pertemuan 1</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background: #f5f6f8; color: #222; }
+        .app { max-width: 500px; min-height: 100vh; margin: auto; background: #fff; padding-bottom: 30px; }
+        header { background: #1f2937; color: #fff; padding: 20px; }
+        header a { color: #fff; text-decoration: none; font-size: 16px; }
+        header a:focus-visible, .button:focus-visible { outline: 3px solid #94a3b8; outline-offset: 3px; }
+        header h1 { margin-top: 20px; font-size: 25px; }
+        header p { margin-top: 8px; color: #d1d5db; }
+        main { padding: 20px; }
+        .section { margin-bottom: 25px; }
+        .section h2 { font-size: 20px; margin-bottom: 12px; }
+        .section p { color: #444; line-height: 1.7; margin-bottom: 8px; }
+        .formula { background: #f3f4f6; border-radius: 12px; padding: 18px; text-align: center; font-size: 21px; font-weight: bold; margin: 15px 0; }
+        .example { background: #fafafa; border: 1px solid #ddd; border-radius: 12px; padding: 18px; margin-top: 12px; }
+        .example p { margin-bottom: 8px; }
+        .example p:last-child { margin-bottom: 0; }
+        .important { background: #fff7ed; border-left: 4px solid #f97316; padding: 15px; border-radius: 8px; margin-top: 15px; }
+        .finish { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 18px; margin-top: 25px; }
+        .finish p { margin-top: 10px; line-height: 1.7; }
+        .button { display: block; text-align: center; background: #1f2937; color: #fff; text-decoration: none; padding: 14px; border-radius: 9px; font-weight: bold; margin-top: 20px; }
+        .button:hover { background: #111827; }
+        .formula-note { text-align: center; font-size: 14px; }
+            /* Ukuran frame seragam untuk semua halaman e-learning */
+        .app, .container {
+            width: min(100%, 626px);
+            max-width: 626px;
+            min-height: 100vh;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .bottom-menu { max-width: 626px; }
+        @media (max-width: 626px) {
+            .app, .container { width: 100%; max-width: 100%; }
+            .bottom-menu { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <header>
+            <a href="pertemuan.html">← Kembali</a>
+            <h1>📖 Materi Pertemuan 1</h1>
+            <p>Determinan Matriks</p>
+        </header>
+
+        <main>
+            <section class="section"><h2>📚 Apa itu determinan?</h2>
+                <p>Determinan adalah sebuah nilai bilangan yang dihitung dari elemen-elemen matriks persegi. Determinan membantu kita mengetahui apakah suatu matriks memiliki invers.</p>
+                <p>Untuk matriks ordo 2 × 2, misalkan A = [[a, b], [c, d]], determinannya ditulis det(A) atau |A|.</p>
+            </section>
+            <section class="section"><h2>📐 Rumus determinan ordo 2 × 2</h2>
+                <div class="formula">A = [a&nbsp; b; c&nbsp; d] &nbsp; → &nbsp; det(A) = ad − bc</div>
+                <p>Kalikan elemen diagonal utama (a dan d), lalu kurangi dengan hasil kali diagonal lainnya (b dan c).</p>
+            </section>
+            <section class="section"><h2>💡 Contoh perhitungan</h2>
+                <div class="example"><p>A = [ [3, 2], [1, 4] ]</p><p>det(A) = (3 × 4) − (2 × 1)</p><p>det(A) = 12 − 2 = <strong>10</strong></p></div>
+            </section>
+            <section class="section"><h2>🧮 Determinan ordo 3 × 3</h2>
+                <p>Untuk matriks 3 × 3, salah satu cara yang umum dipakai adalah aturan Sarrus.</p>
+                <div class="example"><p>Jika A = [ [a,b,c], [d,e,f], [g,h,i] ], maka:</p><p><strong>det(A) = aei + bfg + cdh − ceg − bdi − afh</strong></p><p>Jumlahkan hasil kali diagonal turun, kemudian kurangi jumlah hasil kali diagonal naik.</p></div>
+            </section>
+            <section class="section"><h2>⚠️ Kapan determinan bernilai nol?</h2>
+                <div class="important"><p>Jika det(A) = 0, matriks A singular dan tidak memiliki invers. Jika det(A) ≠ 0, matriks A memiliki invers.</p></div>
+            </section>
+            <section class="section"><h2>✅ Kesimpulan</h2><p>Determinan hanya didefinisikan untuk matriks persegi. Untuk ordo 2 × 2, hitung ad − bc. Nilai determinan menentukan apakah invers matriks ada.</p></section>
+            <section class="finish" aria-label="Materi selesai"><h2>🎓 Materi selesai dipelajari?</h2><p>Lanjutkan dengan contoh soal untuk berlatih menghitung determinan.</p></section>
+            <a href="contoh-soal1.html" class="button">LANJUT KE CONTOH SOAL →</a>
+                </main>
+    </div>
+</body>
+</html>

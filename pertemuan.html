@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1f2937">
+    <title>Pertemuan 1 - E-Learning SMA</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background: #f5f6f8; color: #222; }
+        .app { max-width: 500px; min-height: 100vh; margin: auto; background: #fff; padding-bottom: 30px; }
+        header { background: #1f2937; color: #fff; padding: 20px; }
+        header a { color: #fff; text-decoration: none; font-size: 16px; }
+        header a:focus-visible, .button:focus-visible { outline: 3px solid #94a3b8; outline-offset: 3px; }
+        header h1 { margin-top: 20px; font-size: 27px; }
+        header p { margin-top: 8px; color: #d1d5db; }
+        main { padding: 20px; }
+        .summary { margin-bottom: 15px; color: #444; line-height: 1.5; }
+        .section { border: 1px solid #ddd; border-radius: 14px; padding: 20px; margin-bottom: 15px; }
+        .section h2 { font-size: 20px; margin-bottom: 10px; }
+        .section p { color: #555; line-height: 1.6; margin-bottom: 15px; }
+        .status { display: block; margin: 8px 0; font-size: 13px; font-weight: bold; }
+        .status.complete { color: #166534; }
+        .status.incomplete { color: #666; }
+        .button { display: block; text-align: center; background: #1f2937; color: #fff; text-decoration: none; padding: 13px; border-radius: 9px; font-weight: bold; }
+        .button:hover { background: #111827; }
+        .storage-error { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; padding: 12px; border-radius: 8px; margin-bottom: 15px; line-height: 1.5; }
+        .storage-error[hidden] { display: none; }
+            /* Ukuran frame seragam untuk semua halaman e-learning */
+        .app, .container {
+            width: min(100%, 626px);
+            max-width: 626px;
+            min-height: 100vh;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .bottom-menu { max-width: 626px; }
+        @media (max-width: 626px) {
+            .app, .container { width: 100%; max-width: 100%; }
+            .bottom-menu { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <header>
+            <a href="mapel.html">← Kembali ke daftar pertemuan</a>
+            <h1>Pertemuan 1</h1>
+            <p>Determinan Matriks</p>
+        </header>
+
+        <main>
+            <p class="summary" id="ringkasan" aria-live="polite">Memuat status kegiatan…</p>
+            <p class="storage-error" id="storageError" role="alert" hidden></p>
+
+            <section class="section" aria-labelledby="rppTitle">
+                <h2 id="rppTitle">📋 RPP</h2>
+                <p>Lihat rencana pembelajaran untuk pertemuan ini.</p>
+                <a href="rpp1.html" class="button">LIHAT RPP</a>
+            </section>
+
+            <section class="section" aria-labelledby="materiTitle">
+                <h2 id="materiTitle">📖 Materi</h2>
+                <p>Pelajari materi Determinan Matriks sebelum mengerjakan tugas.</p>
+                <a href="materi1.html" class="button">BUKA MATERI</a>
+            </section>
+
+            <section class="section" aria-labelledby="contohTitle">
+                <h2 id="contohTitle">📝 Contoh Soal</h2>
+                <p>Pelajari pembahasan contoh soal untuk memahami materi.</p>
+                <a href="contoh-soal1.html" class="button">LIHAT CONTOH SOAL</a>
+            </section>
+
+            <section class="section" aria-labelledby="absensiTitle">
+                <h2 id="absensiTitle">🧑‍🎓 Absensi</h2>
+                <span id="statusAbsensi" class="status incomplete">Belum selesai</span>
+                <p>Isi absensi untuk pertemuan ini.</p>
+                <a href="absensi1.html" class="button">ISI ABSENSI</a>
+            </section>
+
+            <section class="section" aria-labelledby="tugasTitle">
+                <h2 id="tugasTitle">📚 Tugas</h2>
+                <span id="statusTugas" class="status incomplete">Belum selesai</span>
+                <p>Kerjakan tugas setelah mempelajari materi.</p>
+                <a href="tugas1.html" class="button">KERJAKAN TUGAS</a>
+            </section>
+
+            <section class="section" aria-labelledby="quizTitle">
+                <h2 id="quizTitle">❓ Kuis</h2>
+                <span id="statusQuiz" class="status incomplete">Belum selesai</span>
+                <p>Uji pemahamanmu melalui kuis.</p>
+                <a href="kuis1.html" class="button">MULAI KUIS</a>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        (function () {
+            const kegiatan = [
+                { element: "statusAbsensi", key: "absensiPertemuan1" },
+                { element: "statusTugas", key: "tugasPertemuan1" },
+                { element: "statusQuiz", key: "quizPertemuan1" }
+            ];
+
+            function cekStatus() {
+                let selesai = 0;
+                try {
+                    if (!(localStorage.getItem("namaSiswa") || "").trim()) {
+                        window.location.replace("index.html");
+                        return;
+                    }
+
+                    kegiatan.forEach(function (item) {
+                        const sudahSelesai = Boolean(localStorage.getItem(item.key));
+                        const status = document.getElementById(item.element);
+                        status.textContent = sudahSelesai ? "✓ Selesai" : "Belum selesai";
+                        status.className = "status " + (sudahSelesai ? "complete" : "incomplete");
+                        if (sudahSelesai) selesai++;
+                    });
+
+                    document.getElementById("ringkasan").textContent =
+                        "Kegiatan selesai: " + selesai + " dari " + kegiatan.length + ".";
+                } catch (error) {
+                    const message = document.getElementById("storageError");
+                    message.textContent = "Status kegiatan tidak bisa dibaca. Pastikan penyimpanan browser diaktifkan.";
+                    message.hidden = false;
+                }
+            }
+
+            cekStatus();
+            window.addEventListener("pageshow", cekStatus);
+        })();
+    </script>
+</body>
+</html>

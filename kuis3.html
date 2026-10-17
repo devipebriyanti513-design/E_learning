@@ -1,0 +1,781 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1f2937">
+<title>Kuis Pertemuan 3 - E-Learning SMA</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f6f8;
+    color: #222;
+}
+
+.container {
+    width: min(100%, 626px);
+    max-width: 626px;
+    min-height: 100vh;
+    margin: auto;
+    padding: 20px;
+    background: white;
+}
+
+.header {
+    margin: -20px -20px 20px;
+    padding: 20px;
+    background: #1f2937;
+    color: white;
+}
+
+.back {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+h1 {
+    margin-top: 15px;
+    font-size: 24px;
+}
+
+.subtitle {
+    color: #d1d5db;
+    margin-top: 5px;
+}
+
+.info {
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.warning {
+    background: #fff7ed;
+    border-left: 4px solid #f97316;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.progress-label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 9px;
+    background: #e5e7eb;
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 18px;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    background: #1f2937;
+    transition: width .2s ease;
+}
+
+.question-box {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.question-number {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.question-prompt {
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 12px 0 18px;
+}
+
+/* Matriks dengan kurung siku CSS */
+.matrix-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: fit-content;
+    max-width: 100%;
+    margin: 12px 0;
+    overflow-x: auto;
+}
+
+.matrix-name,
+.matrix-equals {
+    font-family: "Times New Roman", serif;
+    font-size: 22px;
+}
+
+.matrix-name {
+    font-style: italic;
+}
+
+.matrix {
+    display: grid;
+    position: relative;
+    grid-template-columns: repeat(var(--cols), minmax(22px, auto));
+    gap: 7px 15px;
+    padding: 8px 13px;
+    font-family: "Times New Roman", serif;
+    font-size: 19px;
+    line-height: 1.3;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.matrix::before,
+.matrix::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 7px;
+    border-top: 1.7px solid #111;
+    border-bottom: 1.7px solid #111;
+}
+
+.matrix::before {
+    left: 0;
+    border-left: 1.7px solid #111;
+}
+
+.matrix::after {
+    right: 0;
+    border-right: 1.7px solid #111;
+}
+
+.matrix-cell {
+    min-width: 15px;
+    white-space: nowrap;
+}
+
+fieldset {
+    border: 0;
+    min-width: 0;
+}
+
+legend {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #f8fafc;
+    border: 1px solid #ddd;
+    padding: 13px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+.option:hover {
+    background: #eef2ff;
+}
+
+.option input {
+    margin-top: 4px;
+    accent-color: #1f2937;
+    flex-shrink: 0;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    border: 0;
+    padding: 14px;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:focus-visible,
+.back:focus-visible,
+.back-button:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 3px;
+}
+
+.prev, .next, .submit {
+    flex: 1;
+}
+
+.prev {
+    background: #e5e7eb;
+    color: #222;
+}
+
+.next {
+    background: #1f2937;
+    color: white;
+}
+
+.submit {
+    background: #15803d;
+    color: white;
+}
+
+.message {
+    color: #991b1b;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.result {
+    display: none;
+    text-align: center;
+    padding: 25px 10px;
+}
+
+.result-icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.result h2 {
+    margin-bottom: 10px;
+}
+
+.success {
+    color: #166534;
+    line-height: 1.6;
+}
+
+.score {
+    font-size: 35px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.back-button {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background: #1f2937;
+    color: white;
+    padding: 14px;
+    border-radius: 9px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+@media (max-width: 420px) {
+    .container {
+        padding: 16px;
+    }
+
+    .header {
+        margin: -16px -16px 20px;
+    }
+
+    .question-box {
+        padding: 15px;
+    }
+
+    .matrix {
+        font-size: 17px;
+        gap: 7px 11px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .progress-fill {
+        transition: none;
+    }
+}
+</style>
+</head>
+
+<body>
+<main class="container">
+
+<header class="header">
+    <a href="pertemuan.html" class="back">
+        ← Kembali ke Pertemuan 3
+    </a>
+    <h1>📝 Kuis Matematika</h1>
+    <p class="subtitle">Penerapan Determinan dan Invers Matriks</p>
+</header>
+
+<section class="info">
+    <strong>Mata Pelajaran:</strong> Matematika<br>
+    <strong>Kelas:</strong> X SMA<br>
+    <strong>Materi:</strong> Penerapan Determinan dan Invers Matriks<br>
+    <strong>Jumlah Soal:</strong> 10 soal pilihan ganda
+</section>
+
+<p class="warning">
+    ⚠️ <strong>Petunjuk:</strong><br>
+    Pilih satu jawaban yang paling tepat untuk setiap soal.
+    Jawab semua soal sebelum mengumpulkan kuis.
+    Nilai disimpan di browser dan belum dikirim ke guru.
+</p>
+
+<p id="storageError" class="message" role="alert" hidden></p>
+
+<section id="quizArea" aria-label="Kuis">
+
+    <p class="progress-label" id="progressText" aria-live="polite"></p>
+
+    <div class="progress-track"
+         role="progressbar"
+         aria-label="Progress pengerjaan kuis"
+         aria-valuemin="0"
+         aria-valuemax="10"
+         aria-valuenow="1">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="question-box">
+        <h2 class="question-number" id="questionText"></h2>
+        <div id="matrixArea"></div>
+        <p class="question-prompt" id="questionPrompt"></p>
+
+        <fieldset>
+            <legend>Pilih satu jawaban</legend>
+            <div id="options"></div>
+        </fieldset>
+    </div>
+
+    <p id="answerError" class="message" role="alert" hidden></p>
+
+    <div class="buttons">
+        <button type="button" class="prev" id="prevButton">
+            ← Sebelumnya
+        </button>
+        <button type="button" class="next" id="nextButton">
+            Selanjutnya →
+        </button>
+    </div>
+</section>
+
+<section class="result" id="resultArea" aria-live="polite" tabindex="-1">
+    <div class="result-icon" aria-hidden="true">✅</div>
+    <h2>Kuis Berhasil Dikumpulkan!</h2>
+    <p class="success">
+        Jawaban dan nilai kuis telah disimpan di browser ini.
+        Nilai belum dikirim kepada guru.
+    </p>
+    <div class="score" id="score"></div>
+    <p id="detailScore"></p>
+    <a href="pertemuan.html" class="back-button">
+        KEMBALI KE PERTEMUAN
+    </a>
+</section>
+
+</main>
+
+<script>
+(function () {
+    /*
+      Catatan:
+      Beberapa pilihan dan angka pada gambar kurang jelas.
+      Periksa kembali soal dan kunci jawaban dengan dokumen asli
+      sebelum kuis dipakai untuk penilaian resmi.
+    */
+
+    const questions = [
+        {
+            question: '1. Diketahui matriks A:',
+            name: 'A',
+            matrix: [[4, 3], [2, 5]],
+            prompt: 'Dengan matriks [4, 3], [2, 5], determinan matriks A adalah ...',
+            options: ['8', '14', '16', '20', '26'],
+            answer: 1
+        },
+        {
+            question: '2. Diketahui matriks B:',
+            name: 'B',
+            matrix: [[-1, 2], [3, 4]],
+            prompt: 'Determinan matriks B adalah ...',
+            options: ['−10', '−8', '−6', '6', '10'],
+            answer: 0
+        },
+        {
+            question: '3. Diketahui matriks C:',
+            name: 'C',
+            matrix: [[2, 1], [6, 3]],
+            prompt: 'Pernyataan yang benar adalah ...',
+            options: [
+                'det(C) = 6',
+                'det(C) = 3',
+                'det(C) = −3',
+                'det(C) = 0',
+                'C memiliki invers'
+            ],
+            answer: 3
+        },
+        {
+            question: '4. Diketahui matriks D:',
+            name: 'D',
+            matrix: [[1, 2], [3, 7]],
+            prompt: 'Invers matriks D adalah ...',
+            options: [
+                '[[7, −2], [−3, 1]]',
+                '[[7, 2], [3, 1]]',
+                '[[1, −2], [−3, 7]]',
+                '[[2, 0], [0, 3]]',
+                '[[1/3, 0], [0, 1/2]]'
+            ],
+            answer: 0,
+            optionMatrices: [
+                [[7, -2], [-3, 1]],
+                [[7, 2], [3, 1]],
+                [[1, -2], [-3, 7]],
+                [[2, 0], [0, 3]],
+                [[1/3, 0], [0, 1/2]]
+            ]
+        },
+        {
+            question: '5. Diketahui matriks E:',
+            name: 'E',
+            matrix: [[3, 1], [2, 1]],
+            prompt: 'Invers matriks E adalah ...',
+            options: [
+                '[[1, −1], [−2, 3]]',
+                '[[1, 1], [2, 3]]',
+                '[[3, −1], [−2, 1]]',
+                '[[1, −2], [−1, 3]]',
+                '[[3, 1], [2, 1]]'
+            ],
+            answer: 0,
+            optionMatrices: [
+                [[1, -1], [-2, 3]],
+                [[1, 1], [2, 3]],
+                [[3, -1], [-2, 1]],
+                [[1, -2], [-1, 3]],
+                [[3, 1], [2, 1]]
+            ]
+        },
+        {
+            question: '6. Diketahui matriks F:',
+            name: 'F',
+            matrix: [[2, 4], [1, 2]],
+            prompt: 'Pernyataan yang benar adalah ...',
+            options: [
+                'Memiliki invers karena determinannya 4',
+                'Memiliki invers karena determinannya 2',
+                'Tidak memiliki invers karena determinannya 0',
+                'Memiliki invers karena determinannya −2',
+                'Tidak memiliki invers karena determinannya −4'
+            ],
+            answer: 2
+        },
+        {
+            question: '7. Diketahui matriks G:',
+            name: 'G',
+            matrix: [[5, 2], [-3, 1]],
+            prompt: 'Invers matriks G adalah ...',
+            options: [
+                '[[-1/11, 2/11], [3/11, 5/11]]',
+                '[[1/11, 2/11], [3/11, 5/11]]',
+                '[[5, -2], [3, 1]]',
+                '[[1, -3], [-2, 5]]',
+                '[[5, 2], [-3, 1]]'
+            ],
+            answer: 0
+        },
+        {
+            question: '8. Jika diketahui matriks A:',
+            name: 'A',
+            matrix: [[2, 1], [1, 1]],
+            prompt: 'Elemen baris pertama kolom kedua dari A⁻¹ adalah ...',
+            options: ['−2', '−1', '0', '1', '2'],
+            answer: 1
+        },
+        {
+            question: '9. Diketahui matriks H:',
+            name: 'H',
+            matrix: [[4, 0], [0, 2]],
+            prompt: 'Invers matriks H adalah ...',
+            options: [
+                '[[1/4, 0], [0, 1/2]]',
+                '[[4, 0], [0, 2]]',
+                '[[1/2, 0], [0, 1/4]]',
+                '[[2, 0], [0, 4]]',
+                '[[-1/4, 0], [0, -1/2]]'
+            ],
+            answer: 0,
+            optionMatrices: [
+                [[1/4, 0], [0, 1/2]],
+                [[4, 0], [0, 2]],
+                [[1/2, 0], [0, 1/4]],
+                [[2, 0], [0, 4]],
+                [[-1/4, 0], [0, -1/2]]
+            ]
+        },
+        {
+            question: '10. Diketahui matriks K:',
+            name: 'K',
+            matrix: [[2, 4], [3, 6]],
+            prompt: 'Jika K tidak memiliki invers, nilai x adalah ...',
+            options: ['1', '2', '3', '4', '6'],
+            answer: 2
+        }
+    ];
+
+    let currentQuestion = 0;
+    const userAnswers = new Array(questions.length).fill(null);
+
+    const quizArea = document.getElementById('quizArea');
+    const answerError = document.getElementById('answerError');
+    const optionsContainer = document.getElementById('options');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+
+    function createMatrix(name, data) {
+        const container = document.createElement('div');
+        container.className = 'matrix-container';
+        container.setAttribute('role', 'img');
+        container.setAttribute(
+            'aria-label',
+            'Matriks ' + name + ': ' +
+            data.map(row => row.join(', ')).join('; ')
+        );
+
+        const matrixName = document.createElement('span');
+        matrixName.className = 'matrix-name';
+        matrixName.textContent = name;
+
+        const equals = document.createElement('span');
+        equals.className = 'matrix-equals';
+        equals.textContent = '=';
+
+        const matrix = document.createElement('div');
+        matrix.className = 'matrix';
+        matrix.style.setProperty('--cols', data[0].length);
+
+        data.forEach(function (row) {
+            row.forEach(function (value) {
+                const cell = document.createElement('span');
+                cell.className = 'matrix-cell';
+                cell.textContent = String(value).replace('-', '−');
+                matrix.appendChild(cell);
+            });
+        });
+
+        container.append(matrixName, equals, matrix);
+        return container;
+    }
+
+    function createOptionMatrix(data) {
+        const matrix = document.createElement('div');
+        matrix.className = 'matrix';
+        matrix.style.setProperty('--cols', data[0].length);
+        matrix.style.fontSize = '16px';
+        matrix.style.gap = '4px 10px';
+        matrix.style.padding = '5px 10px';
+        matrix.style.marginTop = '5px';
+
+        data.forEach(function (row) {
+            row.forEach(function (value) {
+                const cell = document.createElement('span');
+                cell.className = 'matrix-cell';
+                cell.textContent = String(value).replace('-', '−');
+                matrix.appendChild(cell);
+            });
+        });
+
+        return matrix;
+    }
+
+    function updateQuestionProgress() {
+        const answered = userAnswers.filter(
+            answer => answer !== null
+        ).length;
+
+        document.getElementById('progressText').textContent =
+            'Soal ' + (currentQuestion + 1) +
+            ' dari ' + questions.length +
+            ' · ' + answered + ' dijawab';
+
+        document.querySelector('[role="progressbar"]')
+            .setAttribute('aria-valuenow', String(currentQuestion + 1));
+
+        document.getElementById('progressFill').style.width =
+            ((currentQuestion + 1) / questions.length * 100) + '%';
+    }
+
+    function showQuestion() {
+        const question = questions[currentQuestion];
+
+        updateQuestionProgress();
+
+        document.getElementById('questionText').textContent =
+            question.question;
+
+        const matrixArea = document.getElementById('matrixArea');
+        matrixArea.replaceChildren();
+
+        if (question.matrix) {
+            matrixArea.appendChild(
+                createMatrix(question.name, question.matrix)
+            );
+        }
+
+        document.getElementById('questionPrompt').textContent =
+            question.prompt;
+
+        optionsContainer.replaceChildren();
+
+        question.options.forEach(function (optionText, index) {
+            const label = document.createElement('label');
+            label.className = 'option';
+
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.name = 'answer';
+            input.value = String(index);
+            input.checked = userAnswers[currentQuestion] === index;
+
+            input.addEventListener('change', function () {
+                userAnswers[currentQuestion] = index;
+                answerError.hidden = true;
+                updateQuestionProgress();
+            });
+
+            const content = document.createElement('span');
+            content.append(
+                document.createTextNode(
+                    String.fromCharCode(65 + index) + '. '
+                )
+            );
+
+            if (question.optionMatrices && question.optionMatrices[index]) {
+                content.appendChild(
+                    createOptionMatrix(question.optionMatrices[index])
+                );
+            } else {
+                content.appendChild(
+                    document.createTextNode(optionText)
+                );
+            }
+
+            label.append(input, content);
+            optionsContainer.appendChild(label);
+        });
+
+        prevButton.hidden = currentQuestion === 0;
+
+        const isLast = currentQuestion === questions.length - 1;
+        nextButton.textContent = isLast
+            ? 'KUMPULKAN KUIS'
+            : 'Selanjutnya →';
+        nextButton.className = isLast ? 'submit' : 'next';
+    }
+
+    function submitQuiz() {
+        if (userAnswers.includes(null)) {
+            answerError.textContent =
+                'Masih ada soal yang belum dijawab. Periksa semua soal sebelum mengumpulkan.';
+            answerError.hidden = false;
+            answerError.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest'
+            });
+            return;
+        }
+
+        const correct = userAnswers.reduce(function (count, answer, index) {
+            return count +
+                (answer === questions[index].answer ? 1 : 0);
+        }, 0);
+
+        const score = Math.round(
+            (correct / questions.length) * 100
+        );
+
+        const result = {
+            score: score,
+            correct: correct,
+            total: questions.length,
+            answers: userAnswers.slice(),
+            date: new Date().toISOString()
+        };
+
+        try {
+            localStorage.setItem(
+                'quizPertemuan3',
+                JSON.stringify(result)
+            );
+        } catch (error) {
+            const storageError = document.getElementById('storageError');
+            storageError.textContent =
+                'Nilai tidak dapat disimpan. Periksa pengaturan penyimpanan browser.';
+            storageError.hidden = false;
+            return;
+        }
+
+        quizArea.hidden = true;
+        document.getElementById('score').textContent = 'Nilai: ' + score;
+        document.getElementById('detailScore').textContent =
+            'Jawaban benar: ' + correct +
+            ' dari ' + questions.length + ' soal.';
+
+        const resultArea = document.getElementById('resultArea');
+        resultArea.style.display = 'block';
+        resultArea.focus();
+    }
+
+    prevButton.addEventListener('click', function () {
+        if (currentQuestion > 0) {
+            currentQuestion--;
+            answerError.hidden = true;
+            showQuestion();
+        }
+    });
+
+    nextButton.addEventListener('click', function () {
+        if (currentQuestion === questions.length - 1) {
+            submitQuiz();
+        } else {
+            currentQuestion++;
+            answerError.hidden = true;
+            showQuestion();
+        }
+    });
+
+    showQuestion();
+})();
+</script>
+</body>
+</html>

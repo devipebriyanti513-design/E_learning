@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1f2937">
+    <title>RPP Pertemuan 3 - E-Learning SMA</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: Arial, sans-serif; background: #f5f6f8; color: #222; }
+        .container { max-width: 720px; min-height: 100vh; margin: auto; background: #fff; }
+        .header { background: #1f2937; color: #fff; padding: 22px 24px; }
+        .back { color: #fff; text-decoration: none; font-size: 14px; }
+        .back:hover { text-decoration: underline; }
+        .back:focus-visible, .button:focus-visible { outline: 3px solid #60a5fa; outline-offset: 3px; }
+        .header h1 { margin: 20px 0 6px; font-size: 26px; }
+        .header p { margin: 0; color: #d1d5db; }
+        .content { padding: 24px; }
+        .info, .section { padding: 18px; border: 1px solid #e5e7eb; border-radius: 12px; margin-bottom: 18px; }
+        .info { background: #f3f4f6; line-height: 1.8; font-size: 14px; }
+        .section h2 { margin: 0 0 12px; font-size: 19px; }
+        .section p, .section li { color: #4b5563; line-height: 1.65; }
+        .section p { margin: 0 0 10px; }
+        .section ul, .section ol { margin: 8px 0 0; padding-left: 22px; }
+        .section li + li { margin-top: 5px; }
+        .example { background: #f8fafc; border-radius: 8px; padding: 12px; }
+        .button { display: block; background: #1f2937; color: #fff; text-align: center; padding: 14px; border-radius: 9px; text-decoration: none; font-weight: bold; margin-top: 20px; }
+        .button:hover { background: #111827; }
+        @media (max-width: 520px) {
+            .header { padding: 20px 18px; }
+            .content { padding: 18px; }
+        }
+        @media print {
+            body { background: #fff; }
+            .container { max-width: none; }
+            .header { background: #fff; color: #111; padding: 0 0 16px; border-bottom: 2px solid #222; }
+            .back { display: none; }
+            .header p { color: #333; }
+            .content { padding: 16px 0; }
+            .button { display: none; }
+            .info, .section { break-inside: avoid; }
+        }
+            /* Ukuran frame seragam untuk semua halaman e-learning */
+        .app, .container {
+            width: min(100%, 626px);
+            max-width: 626px;
+            min-height: 100vh;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .bottom-menu { max-width: 626px; }
+        @media (max-width: 626px) {
+            .app, .container { width: 100%; max-width: 100%; }
+            .bottom-menu { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="pertemuan3.html" class="back">← Kembali ke Pertemuan 3</a>
+            <h1>📋 RPP Pertemuan 3</h1>
+            <p>Penerapan Determinan dan Invers Matriks</p>
+        </header>
+
+        <main class="content">
+            <section class="info" aria-label="Identitas pembelajaran">
+                <strong>Mata Pelajaran:</strong> Matematika<br>
+                <strong>Kelas:</strong> X SMA<br>
+                <strong>Materi:</strong> Penerapan Determinan dan Invers Matriks<br>
+                <strong>Pertemuan:</strong> 3<br>
+                <strong>Alokasi Waktu:</strong> 2 × 45 menit (90 menit)
+            </section>
+
+            <section class="section">
+                <h2>🎯 Tujuan Pembelajaran</h2>
+                <p>Setelah mengikuti pembelajaran, siswa diharapkan mampu:</p>
+                <ul>
+                    <li>Mengidentifikasi informasi yang diketahui dan ditanyakan dalam soal cerita.</li>
+                    <li>Menyajikan sistem persamaan linear dua variabel dalam bentuk AX = B.</li>
+                    <li>Menyelesaikan sistem menggunakan X = A⁻¹B ketika det(A) ≠ 0.</li>
+                    <li>Memeriksa hasil dengan mensubstitusikan jawaban ke persamaan awal.</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>📖 Materi Pembelajaran</h2>
+                <ul>
+                    <li>Mengidentifikasi informasi diketahui dan ditanyakan.</li>
+                    <li>Menetapkan variabel untuk nilai yang belum diketahui.</li>
+                    <li>Menghitung determinan matriks koefisien dan menentukan keberadaan invers.</li>
+                    <li>Menghitung solusi dengan invers serta memeriksanya pada persamaan awal.</li>
+                </ul>
+                <p class="example">
+                    <strong>Contoh:</strong> 2x + y = 5 dan x − y = 1.
+                    Bentuk AX=B, hitung det(A)=−3, lalu X=A⁻¹B=[ [2], [1] ].
+                    Jadi x=2 dan y=1; keduanya memenuhi sistem awal.
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>🧑‍🏫 Metode dan Media</h2>
+                <ul>
+                    <li>Metode: tanya jawab, pemodelan contoh, diskusi kelompok kecil, latihan mandiri, dan refleksi.</li>
+                    <li>Media: materi pada aplikasi, papan tulis atau kertas kerja, serta soal cerita kontekstual.</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>📝 Kegiatan Pembelajaran</h2>
+                <p><strong>Pendahuluan (10 menit)</strong></p>
+                <ul>
+                    <li>Guru memeriksa kesiapan belajar dan mengulas determinan matriks dari pertemuan sebelumnya.</li>
+                    <li>Guru menyajikan situasi sederhana sehari-hari dan menyampaikan tujuan pembelajaran.</li>
+                </ul>
+
+                <p><strong>Kegiatan inti (65 menit)</strong></p>
+                <ul>
+                    <li>Siswa membaca soal cerita dan menandai informasi yang diketahui serta yang ditanyakan.</li>
+                    <li>Guru memodelkan cara membentuk matriks koefisien dan menggunakan rumus X = A⁻¹B.</li>
+                    <li>Siswa menyelesaikan beberapa masalah secara berpasangan, termasuk menuliskan satuan dan makna jawabannya.</li>
+                    <li>Siswa memeriksa jawaban dengan substitusi, lalu mendiskusikan langkah dan kesalahan yang ditemukan.</li>
+                </ul>
+
+                <p><strong>Penutup (15 menit)</strong></p>
+                <ul>
+                    <li>Siswa menyimpulkan langkah menyelesaikan sistem menggunakan invers matriks.</li>
+                    <li>Siswa mengerjakan tugas atau kuis sebagai evaluasi pemahaman.</li>
+                    <li>Guru memberi umpan balik dan tindak lanjut berupa latihan tambahan atau pengayaan.</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>📊 Penilaian</h2>
+                <ul>
+                    <li><strong>Sikap dan partisipasi:</strong> keterlibatan dalam diskusi dan ketekunan mengerjakan latihan.</li>
+                    <li><strong>Pengetahuan:</strong> ketepatan membentuk AX=B, menghitung determinan, dan menemukan solusi.</li>
+                    <li><strong>Keterampilan:</strong> kelengkapan langkah, penggunaan satuan, penafsiran, dan pemeriksaan jawaban.</li>
+                    <li><strong>Tindak lanjut:</strong> latihan pemodelan tambahan atau soal pengayaan sesuai hasil evaluasi.</li>
+                </ul>
+            </section>
+
+            <a href="pertemuan3.html" class="button">KEMBALI KE PERTEMUAN 3</a>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

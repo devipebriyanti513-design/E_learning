@@ -1,0 +1,642 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1f2937">
+    <title>Tugas Pertemuan 1 - E-Learning SMA</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        .app {
+            width: min(100%, 626px);
+            min-height: 100vh;
+            margin: auto;
+            background: #fff;
+        }
+
+        header {
+            background: #1f2937;
+            color: #fff;
+            padding: 22px 24px;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
+        header h1 {
+            margin: 20px 0 6px;
+            font-size: 26px;
+        }
+
+        header p {
+            margin: 0;
+            color: #d1d5db;
+        }
+
+        main {
+            padding: 24px;
+        }
+
+        .info, .warning, .question, .success, .error {
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+
+        .info {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+        }
+
+        .warning {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+        }
+
+        .question {
+            border: 1px solid #e5e7eb;
+        }
+
+        .question h2 {
+            margin: 0 0 12px;
+            font-size: 18px;
+        }
+
+        .prompt {
+            margin: 0 0 12px;
+            line-height: 1.6;
+        }
+
+        /* Tampilan matriks */
+        .matrix-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 14px 0 20px;
+            overflow-x: auto;
+        }
+
+        .matrix-name {
+            font-size: 19px;
+            font-style: italic;
+            white-space: nowrap;
+        }
+
+        .matrix {
+            position: relative;
+            display: inline-block;
+            padding: 5px 12px;
+            flex-shrink: 0;
+        }
+
+        .matrix::before,
+        .matrix::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 7px;
+            border-top: 1.5px solid #222;
+            border-bottom: 1.5px solid #222;
+        }
+
+        .matrix::before {
+            left: 0;
+            border-left: 1.5px solid #222;
+        }
+
+        .matrix::after {
+            right: 0;
+            border-right: 1.5px solid #222;
+        }
+
+        .matrix table {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .matrix td {
+            min-width: 30px;
+            padding: 3px 6px;
+        }
+
+        label[for] {
+            display: block;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
+        textarea {
+            display: block;
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            border: 1px solid #9ca3af;
+            border-radius: 9px;
+            font: inherit;
+            resize: vertical;
+        }
+
+        textarea:focus,
+        button:focus-visible,
+        a:focus-visible {
+            outline: 3px solid #60a5fa;
+            outline-offset: 2px;
+        }
+
+        .count {
+            text-align: right;
+            color: #6b7280;
+            font-size: 13px;
+            margin: 5px 0 0;
+        }
+
+        .submit-button, .back-button {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border: 0;
+            border-radius: 9px;
+            background: #1f2937;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-button:hover, .back-button:hover {
+            background: #111827;
+        }
+
+        .error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+        }
+
+        .success {
+            display: none;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 520px) {
+            header {
+                padding: 20px 18px;
+            }
+
+            main {
+                padding: 18px;
+            }
+        }
+
+        @media print {
+            body {
+                background: #fff;
+            }
+
+            .app {
+                max-width: none;
+                width: 100%;
+            }
+
+            header {
+                background: #fff;
+                color: #111;
+                border-bottom: 2px solid #222;
+            }
+
+            header a, .submit-button, .back-button {
+                display: none;
+            }
+
+            header p {
+                color: #333;
+            }
+
+            main {
+                padding: 16px 0;
+            }
+
+            .question {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="app">
+
+    <header>
+        <a href="pertemuan.html">← Kembali ke Pertemuan 1</a>
+        <h1>📚 Tugas Pertemuan 1</h1>
+        <p>Determinan Matriks</p>
+    </header>
+
+    <main>
+
+        <section class="info">
+            <strong>Mata Pelajaran:</strong> Matematika<br>
+            <strong>Kelas:</strong> X SMA<br>
+            <strong>Pertemuan:</strong> 1<br>
+            <strong>Materi:</strong> Determinan Matriks Ordo 2 × 2 dan 3 × 3<br>
+            <strong>Jumlah Soal:</strong> 10 soal uraian
+        </section>
+
+        <p class="warning">
+            <strong>Petunjuk:</strong> Kerjakan seluruh soal dengan menuliskan
+            langkah perhitungan dan hasil akhirnya. Setelah selesai, tekan
+            tombol SIMPAN JAWABAN. Jawaban tersimpan pada perangkat yang digunakan.
+        </p>
+
+        <p id="formError" class="error" role="alert" hidden></p>
+
+        <form id="formTugas" novalidate>
+
+            <!-- SOAL 1 -->
+            <section class="question">
+                <h2>Soal 1</h2>
+                <p class="prompt">Diketahui matriks A:</p>
+
+                <div class="matrix-wrap">
+                    <span class="matrix-name">A =</span>
+                    <div class="matrix">
+                        <table>
+                            <tr><td>3</td><td>2</td></tr>
+                            <tr><td>1</td><td>4</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <p class="prompt">Tentukan determinan matriks A.</p>
+                <label for="soal1">Jawaban Soal 1</label>
+                <textarea id="soal1" name="soal1" maxlength="2000"
+                    placeholder="Tuliskan rumus, perhitungan, dan hasilnya..." required></textarea>
+                <p class="count"><span id="count1">0</span>/2000 karakter</p>
+            </section>
+
+            <!-- SOAL 2 -->
+            <section class="question">
+                <h2>Soal 2</h2>
+                <p class="prompt">Diketahui matriks B:</p>
+
+                <div class="matrix-wrap">
+                    <span class="matrix-name">B =</span>
+                    <div class="matrix">
+                        <table>
+                            <tr><td>5</td><td>−2</td></tr>
+                            <tr><td>3</td><td>1</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <p class="prompt">Tentukan determinan matriks B.</p>
+                <label for="soal2">Jawaban Soal 2</label>
+                <textarea id="soal2" name="soal2" maxlength="2000"
+                    placeholder="Tuliskan rumus, perhitungan, dan hasilnya..." required></textarea>
+                <p class="count"><span id="count2">0</span>/2000 karakter</p>
+            </section>
+
+            <!-- SOAL 3 -->
+            <section class="question">
+                <h2>Soal 3</h2>
+                <p class="prompt">Diketahui matriks C:</p>
+
+                <div class="matrix-wrap">
+                    <span class="matrix-name">C =</span>
+                    <div class="matrix">
+                        <table>
+                            <tr><td>−2</td><td>4</td></tr>
+                            <tr><td>3</td><td>5</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <p class="prompt">Hitunglah determinan matriks C.</p>
+                <label for="soal3">Jawaban Soal 3</label>
+                <textarea id="soal3" name="soal3" maxlength="2000"
+                    placeholder="Tuliskan rumus, perhitungan, dan hasilnya..." required></textarea>
+                <p class="count"><span id="count3">0</span>/2000 karakter</p>
+            </section>
+
+            <!-- SOAL 4 -->
+            <section class="question">
+                <h2>Soal 4</h2>
+                <p class="prompt">Diketahui matriks D:</p>
+
+                <div class="matrix-wrap">
+                    <span class="matrix-name">D =</span>
+                    <div class="matrix">
+                        <table>
+                            <tr><td>2</td><td>1</td><td>3</td></tr>
+                            <tr><td>0</td><td>4</td><td>2</td></tr>
+                            <tr><td>1</td><td>2</td><td>1</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <p class="prompt">
+                    Tentukan determinan matriks D menggunakan metode ekspansi kofaktor.
+                </p>
+                <label for="soal4">Jawaban Soal 4</label>
+                <textarea id="soal4" name="soal4" maxlength="2000"
+                    placeholder="Tuliskan langkah ekspansi kofaktor..." required></textarea>
+                <p class="count"><span id="count4">0</span>/2000 karakter</p>
+            </section>
+
+            <!-- SOAL 5 -->
+            <section class="question">
+                <h2>Soal 5</h2>
+                <p class="prompt">Diketahui matriks E:</p>
+
+                <div class="matrix-wrap">
+                    <span class="matrix-name">E =</span>
+                    <div class="matrix">
+                        <table>
+                            <tr><td>1</td><td>2</td><td>0</td></tr>
+                            <tr><td>3</td><td>1</td><td>2</td></tr>
+                            <tr><td>2</td><td>0</td><td>4</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <p class="prompt">
+                    Hitunglah determinan matriks E menggunakan metode Sarrus.
+                </p>
+                <label for="soal5">Jawaban Soal 5</label>
+                <textarea id="soal5" name="soal5" maxlength="2000"
+                    placeholder="Tuliskan langkah metode Sarrus..." required></textarea>
+                <p class="count"><span id="count5">0</span>/2000 karakter</p>
+            </section>
+
+            <!-- SOAL 6 -->
+            <section class="question">
+                <h2>Soal 6</h2>
+                <p class="prompt">Diketahui matriks F:</p>
+
+                <div class="matrix-wrap">
+                    <span class="matrix-name">F =</span>
+                    <div class="matrix">
+                        <table>
+                            <tr><td>7</td><td>2</td></tr>
+                            <tr><td>3</td><td>5</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <p class="prompt">Tentukan det(F).</p>
+                <label for="soal6">Jawaban Soal 6</label>
+                <textarea id="soal6" name="soal6" maxlength="2000"
+                    placeholder="Tuliskan perhitungan determinan F..." required></textarea>
+                <p class="count"><span id="count6">0</span>/2000 karakter</p>
+            </section>
+
+            <!-- SOAL 7 -->
+            <section class="question">
+                <h2>Soal 7</h2>
+                <p class="prompt">Diketahui matriks G:</p>
+
+                <div class="matrix-wrap">
+                    <span class="matrix-name">G =</span>
+                    <div class="matrix">
+                        <table>
+                            <tr><td>1</td><td>4</td></tr>
+                            <tr><td>6</td><td>2</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <p class="prompt">Hitunglah determinan matriks G.</p>
+                <label for="soal7">Jawaban Soal 7</label>
+                <textarea id="soal7" name="soal7" maxlength="2000"
+                    placeholder="Tuliskan perhitungan determinan G..." required></textarea>
+                <p class="count"><span id="count7">0</span>/2000 karakter</p>
+            </section>
+
+            <!-- SOAL 8 -->
+            <section class="question">
+                <h2>Soal 8</h2>
+                <p class="prompt">Diketahui matriks H:</p>
+
+                <div class="matrix-wrap">
+                    <span class="matrix-name">H =</span>
+                    <div class="matrix">
+                        <table>
+                            <tr><td>2</td><td>1</td><td>3</td></tr>
+                            <tr><td>0</td><td>4</td><td>2</td></tr>
+                            <tr><td>1</td><td>2</td><td>5</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <p class="prompt">
+                    Tentukan determinan matriks H menggunakan aturan Sarrus.
+                </p>
+                <label for="soal8">Jawaban Soal 8</label>
+                <textarea id="soal8" name="soal8" maxlength="2000"
+                    placeholder="Tuliskan langkah metode Sarrus..." required></textarea>
+                <p class="count"><span id="count8">0</span>/2000 karakter</p>
+            </section>
+
+            <!-- SOAL 9 -->
+            <section class="question">
+                <h2>Soal 9</h2>
+                <p class="prompt">Diketahui matriks I:</p>
+
+                <div class="matrix-wrap">
+                    <span class="matrix-name">I =</span>
+                    <div class="matrix">
+                        <table>
+                            <tr><td>3</td><td>2</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>2</td></tr>
+                            <tr><td>4</td><td>1</td><td>3</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <p class="prompt">Hitunglah determinan matriks I.</p>
+                <label for="soal9">Jawaban Soal 9</label>
+                <textarea id="soal9" name="soal9" maxlength="2000"
+                    placeholder="Tuliskan langkah perhitungan determinan I..." required></textarea>
+                <p class="count"><span id="count9">0</span>/2000 karakter</p>
+            </section>
+
+            <!-- SOAL 10 -->
+            <section class="question">
+                <h2>Soal 10</h2>
+                <p class="prompt">Diketahui matriks J:</p>
+
+                <div class="matrix-wrap">
+                    <span class="matrix-name">J =</span>
+                    <div class="matrix">
+                        <table>
+                            <tr><td>2</td><td>−1</td><td>0</td></tr>
+                            <tr><td>3</td><td>4</td><td>1</td></tr>
+                            <tr><td>1</td><td>2</td><td>5</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <p class="prompt">
+                    Tentukan determinan matriks J menggunakan ekspansi kofaktor.
+                </p>
+                <label for="soal10">Jawaban Soal 10</label>
+                <textarea id="soal10" name="soal10" maxlength="2000"
+                    placeholder="Tuliskan langkah ekspansi kofaktor..." required></textarea>
+                <p class="count"><span id="count10">0</span>/2000 karakter</p>
+            </section>
+
+            <button type="submit" class="submit-button">
+                📤 SIMPAN JAWABAN
+            </button>
+
+        </form>
+
+        <section class="success" id="success" role="status" tabindex="-1">
+            <h2>✅ Jawaban Berhasil Disimpan</h2>
+            <p>
+                Jawaban tugas telah disimpan pada penyimpanan browser di perangkat ini.
+                Jawaban belum otomatis terkirim kepada guru.
+            </p>
+            <button type="button" id="editButton" class="back-button">
+                LIHAT / UBAH JAWABAN
+            </button>
+            <a href="pertemuan.html" class="back-button" style="margin-top:10px;">
+                KEMBALI KE PERTEMUAN 1
+            </a>
+        </section>
+
+    </main>
+</div>
+
+<script src="js/auth.js"></script>
+
+<script>
+(function () {
+    const form = document.getElementById("formTugas");
+    const formError = document.getElementById("formError");
+    const success = document.getElementById("success");
+    const editButton = document.getElementById("editButton");
+
+    const storageKey = "tugasDeterminanMatriksPertemuan1";
+    const jumlahSoal = 10;
+
+    // Menghitung karakter pada setiap jawaban.
+    for (let i = 1; i <= jumlahSoal; i++) {
+        const textarea = document.getElementById("soal" + i);
+        const count = document.getElementById("count" + i);
+
+        textarea.addEventListener("input", function () {
+            count.textContent = textarea.value.length;
+        });
+    }
+
+    // Memuat jawaban yang sebelumnya disimpan.
+    function loadAnswers() {
+        try {
+            const saved = localStorage.getItem(storageKey);
+
+            if (!saved) return;
+
+            const data = JSON.parse(saved);
+
+            for (let i = 1; i <= jumlahSoal; i++) {
+                const textarea = document.getElementById("soal" + i);
+                textarea.value = data["soal" + i] || "";
+                document.getElementById("count" + i).textContent =
+                    textarea.value.length;
+            }
+        } catch (error) {
+            formError.textContent =
+                "Jawaban tersimpan tidak dapat dibaca. Silakan periksa kembali browser.";
+            formError.hidden = false;
+        }
+    }
+
+    loadAnswers();
+
+    // Menyimpan jawaban setelah seluruh soal diisi.
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        formError.hidden = true;
+
+        for (let i = 1; i <= jumlahSoal; i++) {
+            const textarea = document.getElementById("soal" + i);
+
+            if (!textarea.value.trim()) {
+                formError.textContent =
+                    "Soal " + i + " belum dijawab. Silakan lengkapi semua 10 soal.";
+                formError.hidden = false;
+                textarea.focus();
+                formError.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+                return;
+            }
+        }
+
+        const dataTugas = {
+            submittedAt: new Date().toISOString()
+        };
+
+        for (let i = 1; i <= jumlahSoal; i++) {
+            dataTugas["soal" + i] =
+                document.getElementById("soal" + i).value.trim();
+        }
+
+        try {
+            localStorage.setItem(storageKey, JSON.stringify(dataTugas));
+
+            form.hidden = true;
+            success.style.display = "block";
+            success.focus();
+        } catch (error) {
+            formError.textContent =
+                "Jawaban gagal disimpan. Periksa ruang penyimpanan browser, lalu coba lagi.";
+            formError.hidden = false;
+        }
+    });
+
+    // Tombol untuk melihat atau mengubah jawaban.
+    editButton.addEventListener("click", function () {
+        success.style.display = "none";
+        form.hidden = false;
+        form.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+})();
+</script>
+
+</body>
+</html>

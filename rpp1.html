@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1f2937">
+    <title>RPP Pertemuan 1 - E-Learning SMA</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: Arial, sans-serif; background: #f5f6f8; color: #222; }
+        .app { max-width: 720px; min-height: 100vh; margin: auto; background: #fff; }
+        header { padding: 22px 24px; background: #1f2937; color: #fff; }
+        header a { color: #fff; text-decoration: none; }
+        header a:hover, header a:focus-visible { text-decoration: underline; }
+        header h1 { margin: 22px 0 8px; font-size: 26px; }
+        header p { margin: 0; color: #e5e7eb; }
+        main { padding: 24px; }
+        .info, .section { border: 1px solid #e5e7eb; border-radius: 12px; padding: 18px; margin-bottom: 18px; }
+        .info { background: #f9fafb; }
+        .info p { margin: 0 0 8px; line-height: 1.5; }
+        .info p:last-child { margin-bottom: 0; }
+        .section h2 { margin: 0 0 12px; font-size: 19px; }
+        .section p, .section li { color: #4b5563; line-height: 1.65; }
+        .section p { margin: 0 0 10px; }
+        .section ul, .section ol { margin: 8px 0 0; padding-left: 22px; }
+        .section li + li { margin-top: 5px; }
+        .time { color: #6b7280; font-size: 14px; font-weight: normal; }
+        .example { padding: 12px; background: #f3f4f6; border-radius: 8px; font-weight: bold; color: #1f2937 !important; }
+        .button { display: block; padding: 14px; margin-top: 22px; border-radius: 9px; background: #1f2937; color: #fff; text-align: center; text-decoration: none; font-weight: bold; }
+        .button:hover { background: #111827; }
+        a:focus-visible { outline: 3px solid #60a5fa; outline-offset: 3px; }
+        @media (max-width: 520px) {
+            main { padding: 18px; }
+            header { padding: 20px 18px; }
+        }
+        @media print {
+            body { background: #fff; }
+            .app { max-width: none; }
+            header { background: #fff; color: #111; padding: 0 0 16px; border-bottom: 2px solid #222; }
+            header a { display: none; }
+            header p { color: #333; }
+            main { padding: 16px 0; }
+            .button { display: none; }
+            .info, .section { break-inside: avoid; }
+        }
+            /* Ukuran frame seragam untuk semua halaman e-learning */
+        .app, .container {
+            width: min(100%, 626px);
+            max-width: 626px;
+            min-height: 100vh;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .bottom-menu { max-width: 626px; }
+        @media (max-width: 626px) {
+            .app, .container { width: 100%; max-width: 100%; }
+            .bottom-menu { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <header>
+            <a href="pertemuan.html" aria-label="Kembali ke Pertemuan 1">← Kembali ke Pertemuan 1</a>
+            <h1>RPP Pertemuan 1</h1>
+            <p>Determinan Matriks Ordo 2 × 2</p>
+        </header>
+
+        <main>
+            <section class="info" aria-label="Identitas pembelajaran">
+                <p><strong>Mata Pelajaran:</strong> Matematika</p>
+                <p><strong>Kelas:</strong> X SMA</p>
+                <p><strong>Materi:</strong> Determinan Matriks Ordo 2 × 2</p>
+                <p><strong>Pertemuan:</strong> 1</p>
+                <p><strong>Alokasi Waktu:</strong> 2 × 45 menit (90 menit)</p>
+            </section>
+
+            <section class="section">
+                <h2>🎯 Tujuan Pembelajaran</h2>
+                <p>Setelah mengikuti pembelajaran, siswa diharapkan mampu:</p>
+                <ul>
+                    <li>Menjelaskan pengertian determinan matriks persegi dan notasinya.</li>
+                    <li>Menghitung determinan matriks ordo 2 × 2 menggunakan rumus ad − bc.</li>
+                    <li>Menentukan apakah matriks memiliki invers berdasarkan nilai determinannya.</li>
+                    <li>Memeriksa kebenaran penyelesaian dengan substitusi.</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>📖 Materi Pembelajaran</h2>
+                <p>Determinan matriks persegi adalah nilai skalar yang dihitung dari elemen-elemen matriks. Untuk A = [ [a,b], [c,d] ], det(A) = ad − bc.</p>
+                <p class="example">
+                    Contoh: det(A) = ad − bc<br>
+                    Contoh: A = [ [3,2], [1,4] ].<br>
+                    det(A) = (3 × 4) − (2 × 1) = 10. Karena tidak nol, A memiliki invers.
+                </p>
+            </section>
+
+            <section class="section">
+                <h2>🧑‍🏫 Metode dan Media</h2>
+                <ul>
+                    <li>Metode: tanya jawab, penjelasan singkat, latihan terbimbing, dan pembelajaran mandiri.</li>
+                    <li>Media: halaman materi, papan tulis atau kertas kerja, serta latihan soal pada aplikasi.</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>📝 Kegiatan Pembelajaran</h2>
+                <p><strong>Pendahuluan <span class="time">(10 menit)</span></strong></p>
+                <ul>
+                    <li>Guru menyapa siswa, memeriksa kesiapan belajar, dan mengaitkan materi dengan contoh keseharian.</li>
+                    <li>Guru menyampaikan tujuan dan alur kegiatan pembelajaran.</li>
+                </ul>
+
+                <p><strong>Kegiatan inti <span class="time">(65 menit)</span></strong></p>
+                <ul>
+                    <li>Siswa mempelajari determinan ordo 2 × 2 dan menyelesaikan latihan perhitungan.</li>
+                    <li>Guru dan siswa membahas cara mengalikan diagonal utama lalu mengurangi hasil kali diagonal lainnya.</li>
+                    <li>Siswa mengerjakan latihan secara mandiri atau berpasangan, lalu memeriksa jawaban dengan substitusi.</li>
+                    <li>Guru memberi umpan balik dan membahas kesalahan yang sering muncul.</li>
+                </ul>
+
+                <p><strong>Penutup <span class="time">(15 menit)</span></strong></p>
+                <ul>
+                    <li>Siswa menyimpulkan cara menghitung determinan dan syarat keberadaan invers.</li>
+                    <li>Siswa mengerjakan kuis atau tugas sebagai evaluasi.</li>
+                    <li>Guru menyampaikan tindak lanjut untuk siswa yang sudah memahami materi maupun yang masih memerlukan bantuan.</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>📊 Penilaian</h2>
+                <ul>
+                    <li><strong>Sikap dan partisipasi:</strong> pengamatan keaktifan selama diskusi dan latihan.</li>
+                    <li><strong>Pengetahuan:</strong> ketepatan jawaban latihan dan kuis.</li>
+                    <li><strong>Keterampilan:</strong> kemampuan menuliskan perhitungan determinan dengan tepat.</li>
+                    <li><strong>Tindak lanjut:</strong> latihan tambahan atau pengayaan sesuai hasil belajar.</li>
+                </ul>
+            </section>
+
+            <a href="pertemuan.html" class="button">KEMBALI KE PERTEMUAN 1</a>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

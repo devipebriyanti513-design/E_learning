@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1f2937">
+    <title>RPP Pertemuan 2 - E-Learning SMA</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: Arial, sans-serif; background: #f5f6f8; color: #222; }
+        .container { max-width: 720px; min-height: 100vh; margin: auto; background: #fff; }
+        .header { padding: 22px 24px; background: #1f2937; color: #fff; }
+        .back { color: #fff; font-size: 14px; text-decoration: none; }
+        .back:hover { text-decoration: underline; }
+        .back:focus-visible, .button:focus-visible { outline: 3px solid #60a5fa; outline-offset: 3px; }
+        .header h1 { margin: 18px 0 6px; font-size: 26px; }
+        .subtitle { margin: 0; color: #d1d5db; }
+        .content { padding: 24px; }
+        .info, .section { padding: 18px; margin-bottom: 18px; border: 1px solid #e5e7eb; border-radius: 12px; }
+        .info { background: #f1f5f9; line-height: 1.7; font-size: 14px; }
+        .section h2 { margin: 0 0 12px; font-size: 19px; }
+        .section p, .section li { color: #4b5563; line-height: 1.65; }
+        .section p { margin: 0 0 10px; }
+        .section ul, .section ol { margin: 8px 0 0; padding-left: 22px; }
+        .section li + li { margin-top: 5px; }
+        .example { padding: 12px; background: #f8fafc; border-radius: 8px; }
+        .button { display: block; padding: 14px; margin-top: 22px; border-radius: 9px; background: #1f2937; color: #fff; text-align: center; text-decoration: none; font-weight: bold; }
+        .button:hover { background: #111827; }
+        @media (max-width: 520px) {
+            .header { padding: 20px 18px; }
+            .content { padding: 18px; }
+        }
+        @media print {
+            body { background: #fff; }
+            .container { max-width: none; }
+            .header { background: #fff; color: #111; padding: 0 0 16px; border-bottom: 2px solid #222; }
+            .header p { color: #333; }
+            .content { padding: 16px 0; }
+            .button, .back { display: none; }
+            .info, .section { break-inside: avoid; }
+        }
+            /* Ukuran frame seragam untuk semua halaman e-learning */
+        .app, .container {
+            width: min(100%, 626px);
+            max-width: 626px;
+            min-height: 100vh;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .bottom-menu { max-width: 626px; }
+        @media (max-width: 626px) {
+            .app, .container { width: 100%; max-width: 100%; }
+            .bottom-menu { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="pertemuan2.html" class="back">← Kembali ke Pertemuan 2</a>
+            <h1>RPP Pertemuan 2</h1>
+            <p class="subtitle">Invers Matriks Ordo 2 × 2</p>
+        </header>
+
+        <main class="content">
+
+        <section class="info" aria-label="Identitas pembelajaran">
+            <strong>Mata Pelajaran:</strong> Matematika<br>
+            <strong>Kelas:</strong> X SMA<br>
+            <strong>Materi:</strong> Invers Matriks Ordo 2 × 2<br>
+            <strong>Pertemuan:</strong> 2<br>
+            <strong>Alokasi Waktu:</strong> 2 × 45 menit (90 menit)
+        </section>
+
+        <section class="section">
+            <h2>🎯 Tujuan Pembelajaran</h2>
+            <p>Setelah mengikuti pembelajaran, siswa diharapkan mampu:</p>
+            <ul>
+                <li>Menjelaskan hubungan invers matriks dengan matriks identitas.</li>
+                <li>Menghitung invers matriks ordo 2 × 2 jika determinannya tidak nol.</li>
+                <li>Menggunakan rumus invers matriks ordo 2 × 2 secara runtut dan cermat.</li>
+                <li>Memeriksa hasil dengan mengalikan matriks dengan inversnya sehingga diperoleh matriks identitas.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>📖 Materi Pembelajaran</h2>
+            <ul>
+                <li>Pengertian invers dan syarat det(A) ≠ 0.</li>
+                <li>Rumus invers A⁻¹ = 1/(ad−bc) [ [d,−b], [−c,a] ].</li>
+                <li>Langkah menentukan determinan, menyusun adjoin, dan membagi dengan determinan.</li>
+                <li>Verifikasi hasil menggunakan A × A⁻¹ = I.</li>
+            </ul>
+            <p class="example">
+                <strong>Contoh:</strong> A = [ [3,2], [1,4] ], det(A)=10.<br>
+                <strong>Invers:</strong> A⁻¹ = 1/10 [ [4,−2], [−1,3] ].
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>🧑‍🏫 Metode dan Media</h2>
+            <ul>
+                <li>Metode: tanya jawab, penjelasan singkat, diskusi, latihan terbimbing, dan belajar mandiri.</li>
+                <li>Media: halaman materi, papan tulis atau kertas kerja, contoh matriks, serta latihan pada aplikasi.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>📝 Kegiatan Pembelajaran</h2>
+            <p><strong>Pendahuluan (10 menit)</strong></p>
+            <ul>
+                <li>Guru memeriksa kesiapan belajar dan mengulas singkat determinan matriks dari pertemuan sebelumnya.</li>
+                <li>Guru mengaitkan materi dengan perbandingan atau batas dalam situasi sehari-hari, lalu menyampaikan tujuan.</li>
+            </ul>
+
+            <p><strong>Kegiatan inti (65 menit)</strong></p>
+            <ul>
+                <li>Siswa mengamati contoh menghitung invers matriks ordo 2 × 2.</li>
+                <li>Guru memodelkan penggunaan rumus invers dan menjelaskan syarat determinan tidak nol.</li>
+                <li>Siswa mengerjakan latihan invers dan memeriksa hasil perkalian dengan matriks asal.</li>
+                <li>Guru membahas jawaban dan memberi umpan balik.</li>
+            </ul>
+
+            <p><strong>Penutup (15 menit)</strong></p>
+            <ul>
+                <li>Siswa menyimpulkan langkah mencari dan memeriksa invers matriks.</li>
+                <li>Siswa mengerjakan kuis atau tugas untuk memeriksa pemahaman.</li>
+                <li>Guru memberi tindak lanjut berupa latihan tambahan atau pengayaan sesuai hasil belajar.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>📊 Penilaian</h2>
+            <ul>
+                <li><strong>Sikap dan partisipasi:</strong> pengamatan kedisiplinan dan keterlibatan dalam kegiatan.</li>
+                <li><strong>Pengetahuan:</strong> ketepatan menghitung invers matriks.</li>
+                <li><strong>Keterampilan:</strong> ketepatan menuliskan langkah dan memverifikasi A × A⁻¹ = I.</li>
+                <li><strong>Tindak lanjut:</strong> pengulangan konsep tanda negatif atau soal pengayaan berdasarkan hasil evaluasi.</li>
+            </ul>
+        </section>
+
+        <a href="pertemuan2.html" class="button">KEMBALI KE PERTEMUAN 2</a>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

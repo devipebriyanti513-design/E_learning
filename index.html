@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1f2937">
+    <link rel="manifest" href="manifest.json">
+    <title>Masuk - E-Learning SMA</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background: #f5f6f8; color: #222; }
+        .container {
+            max-width: 500px; min-height: 100vh; margin: auto; background: #fff;
+            padding: 30px 20px; display: flex; flex-direction: column; justify-content: center;
+        }
+        .logo { text-align: center; font-size: 60px; margin-bottom: 15px; }
+        h1 { text-align: center; font-size: 28px; margin-bottom: 8px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 35px; line-height: 1.5; }
+        .login-card { border: 1px solid #e5e7eb; border-radius: 15px; padding: 25px 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; }
+        input {
+            width: 100%; padding: 14px; border: 1px solid #d1d5db; border-radius: 10px;
+            font-size: 16px; outline: none;
+        }
+        input:focus { border-color: #1f2937; box-shadow: 0 0 0 3px rgb(31 41 55 / 15%); }
+        .button {
+            width: 100%; padding: 15px; margin-top: 20px; border: 0; border-radius: 10px;
+            background: #1f2937; color: white; font-size: 16px; font-weight: bold; cursor: pointer;
+        }
+        .button:hover { background: #111827; }
+        .button:focus-visible { outline: 3px solid #64748b; outline-offset: 3px; }
+        .error { color: #b91c1c; font-size: 14px; margin-top: 10px; line-height: 1.5; }
+        .error[hidden] { display: none; }
+        .footer { text-align: center; color: #777; font-size: 12px; margin-top: 25px; }
+            /* Ukuran frame seragam untuk semua halaman e-learning */
+        .app, .container {
+            width: min(100%, 626px);
+            max-width: 626px;
+            min-height: 100vh;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .bottom-menu { max-width: 626px; }
+        @media (max-width: 626px) {
+            .app, .container { width: 100%; max-width: 100%; }
+            .bottom-menu { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="logo" aria-hidden="true">📚</div>
+        <h1>E-LEARNING SMA</h1>
+        <p class="subtitle">Belajar lebih mudah, kapan saja dan di mana saja.</p>
+
+        <form class="login-card" id="loginForm" novalidate>
+            <label for="nama">Nama siswa</label>
+            <input
+                type="text"
+                id="nama"
+                name="nama"
+                placeholder="Masukkan nama kamu"
+                autocomplete="name"
+                maxlength="80"
+                required
+                autofocus
+                aria-describedby="error"
+            >
+            <p id="error" class="error" role="alert" aria-live="polite" hidden></p>
+            <button class="button" type="submit">MASUK</button>
+        </form>
+
+        <p class="footer">E-Learning Matematika Kelas X SMA</p>
+    </main>
+
+    <script>
+        const loginForm = document.getElementById("loginForm");
+        const namaInput = document.getElementById("nama");
+        const errorMessage = document.getElementById("error");
+
+        loginForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            const nama = namaInput.value.trim();
+
+            if (!nama) {
+                errorMessage.textContent = "Silakan masukkan nama terlebih dahulu.";
+                errorMessage.hidden = false;
+                namaInput.focus();
+                return;
+            }
+
+            try {
+                localStorage.setItem("namaSiswa", nama);
+                window.location.assign("dashboard.html");
+            } catch (error) {
+                errorMessage.textContent =
+                    "Browser tidak dapat menyimpan data. Aktifkan penyimpanan situs, lalu coba lagi.";
+                errorMessage.hidden = false;
+            }
+        });
+
+        namaInput.addEventListener("input", function () {
+            if (namaInput.value.trim()) errorMessage.hidden = true;
+        });
+
+        if ("serviceWorker" in navigator && window.isSecureContext) {
+            window.addEventListener("load", function () {
+                navigator.serviceWorker.register("sw.js").catch(function (error) {
+                    console.warn("Service worker tidak dapat didaftarkan:", error);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

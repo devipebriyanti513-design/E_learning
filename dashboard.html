@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1f2937">
+    <title>Dashboard - E-Learning SMA</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6f8;
+            color: #222;
+        }
+        .app {
+            max-width: 500px;
+            min-height: 100vh;
+            margin: 0 auto;
+            background: #fff;
+            padding-bottom: 88px;
+        }
+        .page-header {
+            padding: 24px 20px;
+            background: #1f2937;
+            color: #fff;
+        }
+        .page-header h1 { font-size: 24px; margin-bottom: 7px; }
+        .page-header p { color: #d1d5db; line-height: 1.5; }
+        .content { padding: 22px 20px; }
+        .section-title { font-size: 20px; margin-bottom: 15px; }
+        .card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 20px;
+        }
+        .card h3 { font-size: 19px; margin-bottom: 8px; }
+        .card p { color: #555; line-height: 1.5; }
+        .progress-label { margin-top: 18px; font-size: 14px; }
+        .progress-track {
+            width: 100%;
+            height: 12px;
+            margin: 9px 0 10px;
+            overflow: hidden;
+            background: #e5e7eb;
+            border-radius: 999px;
+        }
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            background: #1f2937;
+            border-radius: inherit;
+            transition: width .35s ease;
+        }
+        .progress-note { font-size: 12px; color: #666 !important; margin-bottom: 18px; }
+        .button {
+            display: block;
+            padding: 13px;
+            border-radius: 8px;
+            background: #1f2937;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .button:hover { background: #111827; }
+        .button:focus-visible, .bottom-menu a:focus-visible {
+            outline: 3px solid #64748b;
+            outline-offset: 3px;
+        }
+        .bottom-menu {
+            position: fixed;
+            z-index: 10;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 7px 0 calc(7px + env(safe-area-inset-bottom));
+            border-top: 1px solid #ddd;
+            background: #fff;
+        }
+        .bottom-menu a {
+            flex: 1;
+            padding: 4px 2px;
+            color: #444;
+            text-align: center;
+            text-decoration: none;
+        }
+        .bottom-menu a[aria-current="page"] { color: #111827; font-weight: bold; }
+        .menu-icon { display: block; margin-bottom: 2px; font-size: 20px; }
+        .menu-label { font-size: 11px; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+        }
+            /* Ukuran frame seragam untuk semua halaman e-learning */
+        .app, .container {
+            width: min(100%, 626px);
+            max-width: 626px;
+            min-height: 100vh;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .bottom-menu { max-width: 626px; }
+        @media (max-width: 626px) {
+            .app, .container { width: 100%; max-width: 100%; }
+            .bottom-menu { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <header class="page-header">
+            <h1>Halo, <span id="namaSiswa">Siswa</span> 👋</h1>
+            <p>Selamat datang di E-Learning SMA</p>
+        </header>
+
+        <main class="content">
+            <h2 class="section-title">Mata Pelajaran</h2>
+            <section class="card" aria-labelledby="mapelTitle">
+                <h3 id="mapelTitle">📐 Matematika</h3>
+                <p>Kelas X SMA</p>
+
+                <p class="progress-label">
+                    Progress belajar: <strong id="progressText">0%</strong>
+                </p>
+                <div
+                    class="progress-track"
+                    role="progressbar"
+                    aria-label="Progress belajar"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="0"
+                >
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <p class="progress-note">
+                    Pertemuan dihitung selesai setelah absensi, tugas, dan kuis diselesaikan.
+                </p>
+                <a href="mapel.html" class="button">MULAI BELAJAR</a>
+            </section>
+        </main>
+
+        <nav class="bottom-menu" aria-label="Navigasi utama">
+            <a href="dashboard.html" aria-current="page">
+                <span class="menu-icon" aria-hidden="true">🏠</span>
+                <span class="menu-label">Home</span>
+            </a>
+            <a href="mapel.html">
+                <span class="menu-icon" aria-hidden="true">📚</span>
+                <span class="menu-label">Materi</span>
+            </a>
+            <a href="progress.html">
+                <span class="menu-icon" aria-hidden="true">📊</span>
+                <span class="menu-label">Progress</span>
+            </a>
+            <a href="profil.html">
+                <span class="menu-icon" aria-hidden="true">👤</span>
+                <span class="menu-label">Profil</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        (function () {
+            let namaSiswa;
+            let progress = 0;
+
+            try {
+                namaSiswa = (localStorage.getItem("namaSiswa") || "").trim();
+                if (!namaSiswa) {
+                    window.location.replace("index.html");
+                    return;
+                }
+
+                const pertemuan = [1, 2, 3];
+                const selesai = pertemuan.filter(function (nomor) {
+                    return Boolean(
+                        localStorage.getItem("absensiPertemuan" + nomor) &&
+                        localStorage.getItem("tugasPertemuan" + nomor) &&
+                        localStorage.getItem("quizPertemuan" + nomor)
+                    );
+                }).length;
+
+                progress = Math.round((selesai / pertemuan.length) * 100);
+            } catch (error) {
+                console.error("Data belajar tidak dapat dibaca dari browser:", error);
+            }
+
+            document.getElementById("namaSiswa").textContent = namaSiswa || "Siswa";
+            document.getElementById("progressText").textContent = progress + "%";
+            document.getElementById("progressBar").style.width = progress + "%";
+            document.querySelector('[role="progressbar"]')
+                .setAttribute("aria-valuenow", String(progress));
+        })();
+    </script>
+</body>
+</html>
